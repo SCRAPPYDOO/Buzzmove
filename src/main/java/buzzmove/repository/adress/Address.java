@@ -1,5 +1,6 @@
 package buzzmove.repository.adress;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,14 +16,18 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(nullable = false)
 	private String adressLine;
 
 	private String adressSecondLine;
 
+	@Column(nullable = false)
 	private String town;
 
+	@Column(nullable = false)
 	private String county;
 
+	@Column(nullable = false)
 	private String postcode;
 
 	@OneToOne(mappedBy = "address")

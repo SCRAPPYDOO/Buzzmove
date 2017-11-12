@@ -1,8 +1,7 @@
 package buzzmove.repository;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -11,21 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import buzzmove.repository.adress.Address;
+import buzzmove.BuzzmoveTest;
 import buzzmove.repository.task.Task;
-import buzzmove.repository.task.TaskStatus;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class TaskRepositoryTest {
+public class TaskRepositoryTest extends BuzzmoveTest{
 
 	@Autowired
 	private TaskRepository taskRepository;
-
-	private Task getTask() {
-		Address address = new Address("1/12", "London", "Midterran", "SW18");
-		return new Task("Mr", "Bill", "Gates", new Date(), TaskStatus.OPEN, address, "simple second note");
-	}
 	
 	@Test
 	public void addTask() {

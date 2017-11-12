@@ -3,6 +3,7 @@ package buzzmove.repository.task;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,10 +24,13 @@ public class Task {
 
 	private String title;
 
+    @Column(nullable = false)
 	private String firstName;
 
+    @Column(nullable = false)
 	private String lastName;
 
+    @Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date scheduledDate;
 

@@ -21,40 +21,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-import buzzmove.repository.adress.Address;
+import buzzmove.Buzzmove;
+import buzzmove.BuzzmoveTest;
 import buzzmove.repository.task.Task;
 import buzzmove.repository.task.TaskStatus;
 import buzzmove.service.TaskService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TaskController.class)
-public class TaskControllerTest {
-	
-	protected static final ObjectMapper mapper = new ObjectMapper();
+@ContextConfiguration(classes=Buzzmove.class)
+public class TaskControllerTest extends BuzzmoveTest {
 	
 	@Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
 	private TaskService taskService;
-
-	private Address getAddress() {
-		return new Address("1/12", "London", "Midterran", "SW18");
-	}
-	
-	private Task getTask() {
-		return new Task("Mr", "Bill", "Gates", new Date(), TaskStatus.OPEN, getAddress(), "simple second note");
-	}
-	
-	private String getTaskAsJson() throws JsonProcessingException {
-		return mapper.writeValueAsString(getTask());
-	}
 
 	@Before
 	public void setUp() {
