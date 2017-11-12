@@ -5,7 +5,7 @@ import java.util.Date;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import buzzmove.repository.adress.Address;
+import buzzmove.repository.address.Address;
 import buzzmove.repository.task.Task;
 import buzzmove.repository.task.TaskStatus;
 

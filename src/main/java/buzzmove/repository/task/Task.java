@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import buzzmove.repository.adress.Address;
+import buzzmove.repository.address.Address;
 
 @Entity
 public class Task {

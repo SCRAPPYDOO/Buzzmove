@@ -1,4 +1,4 @@
-package buzzmove.repository.adress;
+package buzzmove.repository.address;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
