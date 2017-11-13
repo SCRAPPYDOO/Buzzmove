@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="table">
+    <table border="1px" style="width:100%">
+        <tr>
+          <th>ID</th>
+          <th>TITLE</th>
+          <th>NAME</th>
+          <th>SURNAME</th>
+          <th>SCHEDULED DATE</th>
+          <th>ADDRESS</th>
+          <th>NOTE</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let task of taskList; let ind = index">
+          <th>{{task.id}}</th> 
+          <th>{{task.title}}</th>
+          <th>{{task.firstName}}</th> 
+          <th>{{task.lastName}}</th> 
+          <th>{{task.scheduledDate.toString()}}</th> 
+          <th>{{task.address}}</th>
+          <th>{{task.notes}}</th> 
+          <th><input class="btn btn-success" type="button" (click)="onEdit(ind)" value="Edit" style="width:100%"></th>
+          <th><input class="btn btn-success" type="button" (click)="onDelete(ind)" value="Remove" style="width:100%"></th>
+        </tr>
+        <tr>
+          <th>{{newTask.id}}</th>
+          <th><input type="text" class="form-control" id="title"  [(ngModel)]="newTask.title" name="title"></th> 
+          <th><input type="text" class="form-control" id="firstName"  [(ngModel)]="newTask.firstName" name="firstName"></th> 
+          <th><input type="text" class="form-control" id="lastName"  [(ngModel)]="newTask.lastName" name="lastName"></th> 
+          <th><material-datepicker id="datepicker" [(date)]="newTask.scheduledDate" name="scheduledDate"></material-datepicker></th> 
+          <th>{{newTask.address}}</th>
+          <th><input type="text" class="form-control" id="notes"  [(ngModel)]="newTask.notes" name="notes"></th> 
+          <th><input class="btn btn-success" type="button" (click)="onClear()" value="CLEAR" style="width:100%"></th>
+          <th><input class="btn btn-success" type="button" (click)="onSubmit()" value="ADD/UPDATE" style="width:100%"></th>
+        </tr>
+    </table>
+  </div>
+</div>
+
