@@ -18,7 +18,7 @@
           <th>{{task.firstName}}</th> 
           <th>{{task.lastName}}</th> 
           <th>{{task.scheduledDate.toString()}}</th> 
-          <th>{{task.address}}</th>
+          <th>{{(task.address != null ? task.address.adressLine + " " + task.address.adressSecondLine + " " + task.address.town +" "  + task.address.county + " " + task.address.postcode : "")}}</th>
           <th>{{task.notes}}</th> 
           <th><input class="btn btn-success" type="button" (click)="onEdit(ind)" value="Edit" style="width:100%"></th>
           <th><input class="btn btn-success" type="button" (click)="onDelete(ind)" value="Remove" style="width:100%"></th>
@@ -29,7 +29,13 @@
           <th><input type="text" class="form-control" id="firstName"  [(ngModel)]="newTask.firstName" name="firstName"></th> 
           <th><input type="text" class="form-control" id="lastName"  [(ngModel)]="newTask.lastName" name="lastName"></th> 
           <th><material-datepicker id="datepicker" [(date)]="newTask.scheduledDate" name="scheduledDate"></material-datepicker></th> 
-          <th>{{newTask.address}}</th>
+          <th>
+            Address line1<input type="text" class="form-control" id="adressLine"  [(ngModel)]="newAddress.adressLine" name="adressLine">
+            Address line2<input type="text" class="form-control" id="adressSecondLine"  [(ngModel)]="newAddress.adressSecondLine" name="adressSecondLine">
+            Town<input type="text" class="form-control" id="town"  [(ngModel)]="newAddress.town" name="town">
+            County<input type="text" class="form-control" id="county"  [(ngModel)]="newAddress.county" name="county">
+            Postal Code<input type="text" class="form-control" id="postcode"  [(ngModel)]="newAddress.postcode" name="postcode">
+          </th>
           <th><input type="text" class="form-control" id="notes"  [(ngModel)]="newTask.notes" name="notes"></th> 
           <th><input class="btn btn-success" type="button" (click)="onClear()" value="CLEAR" style="width:100%"></th>
           <th><input class="btn btn-success" type="button" (click)="onSubmit()" value="ADD/UPDATE" style="width:100%"></th>

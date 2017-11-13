@@ -1,4 +1,6 @@
 export class Address {
+    public id: number;
+
     constructor(public adressLine: string, public adressSecondLine: string, public town: string, public county: string, public postcode: string) {}
     
     public toString() {

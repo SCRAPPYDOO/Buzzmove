@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Task } from "./task/Task";
+import { Address } from "./task/Address";
 
 export const REST_URL: string = "http://localhost:8080";
 export const REST_URL_TASK: string = REST_URL + "/task";
@@ -14,6 +15,7 @@ export const REST_URL_TASK: string = REST_URL + "/task";
 export class AppComponent implements OnInit {
   taskList: Task[] = [];
   newTask: Task = this.getNewTask();
+  newAddress: Address = this.getNewAddress();
 
   constructor(private http: HttpClient) {
   }
@@ -25,6 +27,10 @@ export class AppComponent implements OnInit {
   private getNewTask()  {
     return new Task(null, "", "", "", null, null, "");
   }
+  
+  private getNewAddress(): Address {
+    return new Address("", "", "", "", "");
+  }
 
   private options = {
     headers: new HttpHeaders({"Content-Type": "application/json"})
@@ -32,9 +38,11 @@ export class AppComponent implements OnInit {
 
   public onClear() {
     this.newTask = this.getNewTask();
+    this.newAddress = this.getNewAddress();
   }
 
   public onSubmit() {
+    this.newTask.address = this.newAddress;
     if(this.newTask.id > 0) {
       this.updateTask();
     } else {
