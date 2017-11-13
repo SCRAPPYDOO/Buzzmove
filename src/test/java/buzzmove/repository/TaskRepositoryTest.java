@@ -2,6 +2,7 @@ package buzzmove.repository;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import buzzmove.BuzzmoveTest;
 import buzzmove.repository.task.Task;
+import buzzmove.repository.task.TaskStatus;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -53,5 +55,16 @@ public class TaskRepositoryTest extends BuzzmoveTest{
 		savedTask.setFirstName("Steve");
 		taskRepository.save(savedTask);
 		assertEquals("Steve", taskRepository.findOne(savedTask.getId()).getFirstName());
+	}
+	
+	@Test
+	public void findByTaskStatusTest() {
+		taskRepository.save(new Task("Mr", "Bill", "Gates", new Date(), TaskStatus.OPEN, getAddress(), "simple second note"));
+		taskRepository.save(new Task("Mr", "Bill", "Gates", new Date(), TaskStatus.IN_PROGRESS, getAddress(), "simple second note"));
+		taskRepository.save(new Task("Mr", "Bill", "Gates", new Date(), TaskStatus.OPEN, getAddress(), "simple second note"));
+		taskRepository.save(new Task("Mr", "Bill", "Gates", new Date(), TaskStatus.NEW, getAddress(), "simple second note"));
+		assertEquals(1, taskRepository.findByTaskStatus(TaskStatus.NEW).size());
+		assertEquals(1, taskRepository.findByTaskStatus(TaskStatus.IN_PROGRESS).size());
+		assertEquals(2, taskRepository.findByTaskStatus(TaskStatus.OPEN).size());
 	}
 }

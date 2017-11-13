@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import buzzmove.repository.task.Task;
+import buzzmove.repository.task.TaskStatus;
 import buzzmove.service.TaskService;
 
 
@@ -24,6 +25,11 @@ public class TaskController {
 	@RequestMapping(method = RequestMethod.GET, value = "/task")
 	public List<Task> getTasks() {
 		return taskService.getTasks();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/task/filter/{taskStatus}")
+	public List<Task> getTasks(@PathVariable TaskStatus taskStatus) {
+		return taskService.getTasksFilterByTaskStatus(taskStatus);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/task")

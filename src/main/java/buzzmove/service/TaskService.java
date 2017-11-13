@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import buzzmove.repository.TaskRepository;
 import buzzmove.repository.task.Task;
+import buzzmove.repository.task.TaskStatus;
 
 @Service
 public class TaskService {
@@ -62,5 +63,9 @@ public class TaskService {
 
 	private void throwException(String message) throws ValidationException {
 		throw new ValidationException(message + " is required");
+	}
+
+	public List<Task> getTasksFilterByTaskStatus(TaskStatus taskStatus) {
+		return taskRepository.findByTaskStatus(taskStatus);
 	}
 }

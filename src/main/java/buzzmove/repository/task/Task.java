@@ -24,20 +24,20 @@ public class Task {
 
 	private String title;
 
-    @Column(nullable = false)
+	@Column(nullable = false)
 	private String firstName;
 
-    @Column(nullable = false)
+	@Column(nullable = false)
 	private String lastName;
 
-    @Column(nullable = false)
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date scheduledDate;
 
 	private TaskStatus taskStatus;
 
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name="id")
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "id")
 	private Address address;
 
 	private String notes;
@@ -130,5 +130,10 @@ public class Task {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public String toString() {
+		return this.title + " " + this.firstName + " " + this.lastName + " " + this.scheduledDate + " "
+				+ this.taskStatus + " " + this.address + " " + this.notes;
 	}
 }
